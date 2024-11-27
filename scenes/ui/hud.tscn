@@ -1,0 +1,164 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd7y2vrn37yg4"]
+
+[ext_resource type="Script" path="res://scenes/ui/hud.gd" id="1_77m8q"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 3
+script = ExtResource("1_77m8q")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TopInfo" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="LevelInfo" type="VBoxContainer" parent="MarginContainer/TopInfo"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LevelName" type="Label" parent="MarginContainer/TopInfo/LevelInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Level 1"
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/TopInfo/LevelInfo"]
+layout_mode = 2
+columns = 2
+
+[node name="AttemptsLabel" type="Label" parent="MarginContainer/TopInfo/LevelInfo/GridContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 24
+text = "Attempts:"
+
+[node name="Attempts" type="Label" parent="MarginContainer/TopInfo/LevelInfo/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Attempts: 1"
+
+[node name="TopRight" type="VBoxContainer" parent="MarginContainer/TopInfo"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+
+[node name="TimeLabel" type="Label" parent="MarginContainer/TopInfo/TopRight"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "00:00"
+horizontal_alignment = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/TopInfo/TopRight"]
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="MarginContainer/TopInfo/TopRight/GridContainer"]
+unique_name_in_owner = true
+wait_time = 0.01
+
+[node name="ShotCount" type="Label" parent="MarginContainer/TopInfo/TopRight/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "0 Shots Taken"
+
+[node name="ShotLabel" type="Label" parent="MarginContainer/TopInfo/TopRight/GridContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 24
+text = "Shots Taken"
+
+[node name="StardustCount" type="Label" parent="MarginContainer/TopInfo/TopRight/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0 Stardust Found"
+
+[node name="StardustLabel" type="Label" parent="MarginContainer/TopInfo/TopRight/GridContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Stardust Found"
+
+[node name="StardustPercent" type="Label" parent="MarginContainer/TopInfo/TopRight/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0%"
+
+[node name="StardustLabel2" type="Label" parent="MarginContainer/TopInfo/TopRight/GridContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "%"
+
+[node name="PowerInfo" type="HBoxContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="PowerMeter" type="ProgressBar" parent="MarginContainer/PowerInfo"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+max_value = 1.0
+show_percentage = false
+
+[node name="PowerLabel" type="Label" parent="MarginContainer/PowerInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Power"
+
+[node name="AimGuide" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AimLine" type="Line2D" parent="AimGuide"]
+points = PackedVector2Array(0, 0, 100, 0)
+width = 2.0
+default_color = Color(1, 1, 1, 0.5)
+
+[node name="PowerRadius" type="Line2D" parent="AimGuide"]
+width = 1.0
+default_color = Color(1, 1, 1, 0.2)
+
+[node name="PauseButton" type="Button" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -90.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "Pause"
+
+[connection signal="timeout" from="MarginContainer/TopInfo/TopRight/GridContainer/Timer" to="." method="_on_timer_timeout"]

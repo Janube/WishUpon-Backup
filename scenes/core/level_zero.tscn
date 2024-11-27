@@ -1,0 +1,130 @@
+[gd_scene load_steps=11 format=3 uid="uid://cm0tknsdji0vo"]
+
+[ext_resource type="PackedScene" uid="uid://cjg0h5f6406mr" path="res://scenes/core/parallax_background.tscn" id="1_avpoh"]
+[ext_resource type="AudioStream" uid="uid://dra1c03txs2rt" path="res://assets/audio/music/Aquatic Dreams.mp3" id="2_473jf"]
+[ext_resource type="PackedScene" uid="uid://cubnouq3u6ut3" path="res://scenes/core/player.tscn" id="3_qjuwi"]
+[ext_resource type="PackedScene" uid="uid://sjlvlhqdwbun" path="res://scenes/core/planet.tscn" id="4_8ueuk"]
+[ext_resource type="PackedScene" uid="uid://bcboo5r80jbsp" path="res://scenes/core/black_hole.tscn" id="5_y17o7"]
+[ext_resource type="PackedScene" uid="uid://cydo8jwhxfbna" path="res://scenes/game/spawners/player_spawn_area.tscn" id="6_c651m"]
+[ext_resource type="PackedScene" uid="uid://bycy2ns5w7p7c" path="res://scenes/core/asteroid_2.tscn" id="7_be7sf"]
+[ext_resource type="PackedScene" uid="uid://cd7y2vrn37yg4" path="res://scenes/ui/hud.tscn" id="8_cneld"]
+[ext_resource type="PackedScene" uid="uid://dfausmtmtl5ks" path="res://scenes/core/nebula_trap.tscn" id="9_e2cli"]
+[ext_resource type="PackedScene" uid="uid://cu64t8mwt8ei6" path="res://scenes/game/spawners/asteroid_spawner.tscn" id="10_nay7m"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Parallax" parent="." instance=ExtResource("1_avpoh")]
+
+[node name="LevelManager" type="Node2D" parent="."]
+
+[node name="CollectableManager" type="Node2D" parent="."]
+
+[node name="InputManager" type="Node2D" parent="."]
+
+[node name="CameraManager" type="Node2D" parent="."]
+
+[node name="PhysicsManager" type="Node2D" parent="."]
+
+[node name="TimeManager" type="Node2D" parent="."]
+
+[node name="AchievementManager" type="Node2D" parent="."]
+
+[node name="SaveManager" type="Node2D" parent="."]
+
+[node name="SettingsManager" type="Node2D" parent="."]
+
+[node name="AudioManager" type="Node2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="AudioManager"]
+unique_name_in_owner = true
+stream = ExtResource("2_473jf")
+autoplay = true
+
+[node name="Player" parent="." instance=ExtResource("3_qjuwi")]
+unique_name_in_owner = true
+position = Vector2(401, 2179)
+
+[node name="Planet" parent="." instance=ExtResource("4_8ueuk")]
+unique_name_in_owner = true
+position = Vector2(2199, 2154)
+
+[node name="Black Hole" parent="." instance=ExtResource("5_y17o7")]
+position = Vector2(4489, 2175)
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+position = Vector2(1136, 144)
+copy_mode = 2
+
+[node name="PlayerSpawnArea" parent="." instance=ExtResource("6_c651m")]
+visible = false
+position = Vector2(107, 104)
+
+[node name="Asteroids" type="Node" parent="."]
+
+[node name="Asteroid2" parent="Asteroids" instance=ExtResource("7_be7sf")]
+position = Vector2(368, 925)
+
+[node name="Asteroid3" parent="Asteroids" instance=ExtResource("7_be7sf")]
+position = Vector2(1140, 3258)
+
+[node name="Asteroid9" parent="Asteroids" instance=ExtResource("7_be7sf")]
+position = Vector2(3758, 993)
+
+[node name="Asteroid15" parent="Asteroids" instance=ExtResource("7_be7sf")]
+position = Vector2(2831, 933)
+
+[node name="Asteroid16" parent="Asteroids" instance=ExtResource("7_be7sf")]
+position = Vector2(1842, 1004)
+
+[node name="Asteroid17" parent="Asteroids" instance=ExtResource("7_be7sf")]
+position = Vector2(1094, 986)
+
+[node name="Asteroid18" parent="Asteroids" instance=ExtResource("7_be7sf")]
+position = Vector2(3810, 3213)
+
+[node name="Asteroid19" parent="Asteroids" instance=ExtResource("7_be7sf")]
+position = Vector2(3092, 3215)
+
+[node name="Asteroid20" parent="Asteroids" instance=ExtResource("7_be7sf")]
+position = Vector2(1950, 3286)
+
+[node name="Asteroid4" parent="Asteroids" instance=ExtResource("7_be7sf")]
+position = Vector2(259, 3305)
+
+[node name="LevelBoundary" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelBoundary"]
+position = Vector2(-369, 194)
+polygon = PackedVector2Array(197, 1827, 405, 509, 2146, 387, 2567, 113, 3392, 71, 4509, 341, 4926, 677, 5652, 1350, 5706, 2096, 5641, 2613, 5370, 3206, 4845, 3334, 4132, 3401, 3661, 3348, 3116, 3348, 2585, 3388, 2053, 3388, 1186, 3442, 318, 3415, 273, 2616)
+one_way_collision = true
+
+[node name="HUD" parent="." instance=ExtResource("8_cneld")]
+
+[node name="NebulaTrap" parent="." instance=ExtResource("9_e2cli")]
+position = Vector2(1546, 2159)
+
+[node name="AsteroidSpawner" parent="." instance=ExtResource("10_nay7m")]
+position = Vector2(682, 3283)
+rotation = -1.5708
+asteroid_spawn_speed = 500.0
+despawn_time = 18.88
+
+[node name="AsteroidSpawner2" parent="." instance=ExtResource("10_nay7m")]
+position = Vector2(1557, 3344)
+rotation = -1.5708
+asteroid_spawn_speed = 1000.0
+despawn_time = 17.77
+
+[node name="AsteroidSpawner3" parent="." instance=ExtResource("10_nay7m")]
+position = Vector2(2613, 3304)
+rotation = -1.5708
+asteroid_spawn_speed = 1000.0
+despawn_time = 16.6
+
+[node name="AsteroidSpawner4" parent="." instance=ExtResource("10_nay7m")]
+position = Vector2(3454, 3270)
+rotation = -1.5708
+asteroid_spawn_speed = 500.0
+despawn_time = 15.55
+
+[connection signal="body_exited" from="LevelBoundary" to="Player" method="_on_level_boundary_body_exited"]

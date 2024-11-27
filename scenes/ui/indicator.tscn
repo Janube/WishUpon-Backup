@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5mbm41a1i3ht"]
+
+[ext_resource type="Texture2D" uid="uid://ct7u63wf3am0q" path="res://assets/art/Graphics/Yellow A3 Anim-sheet.png" id="1_6tjue"]
+[ext_resource type="Script" path="res://scenes/ui/indicator.gd" id="1_eysqe"]
+
+[sub_resource type="Animation" id="Animation_bc6ya"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_52hsv"]
+resource_name = "point"
+length = 0.8
+loop_mode = 1
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.02, 0.12, 0.22, 0.32, 0.42, 0.52, 0.61, 0.72),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qb6wj"]
+_data = {
+"RESET": SubResource("Animation_bc6ya"),
+"point": SubResource("Animation_52hsv")
+}
+
+[node name="Indicator" type="Node2D"]
+script = ExtResource("1_eysqe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 3
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("1_6tjue")
+offset = Vector2(-128, 0)
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_qb6wj")
+}
+autoplay = "point"

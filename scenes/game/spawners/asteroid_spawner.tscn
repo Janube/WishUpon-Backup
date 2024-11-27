@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu64t8mwt8ei6"]
+
+[ext_resource type="Script" path="res://scenes/game/spawners/asteroid_spawner.gd" id="1_1nvlo"]
+[ext_resource type="PackedScene" uid="uid://bycy2ns5w7p7c" path="res://scenes/core/asteroid_2.tscn" id="2_0ng3o"]
+[ext_resource type="PackedScene" uid="uid://c5mbm41a1i3ht" path="res://scenes/ui/indicator.tscn" id="3_qclmb"]
+
+[node name="AsteroidSpawner" type="Node2D"]
+script = ExtResource("1_1nvlo")
+asteroid_scene = ExtResource("2_0ng3o")
+despawn_time = 5.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="VisualIndicator" parent="." instance=ExtResource("3_qclmb")]
+script = null
+
+[node name="TrajectoryMarker" type="Marker2D" parent="."]
+position = Vector2(1, 0)

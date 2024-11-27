@@ -1,0 +1,62 @@
+[gd_scene load_steps=12 format=3 uid="uid://y6k1fv80pjq7"]
+
+[ext_resource type="Script" path="res://scenes/core/asteroid_obstacle.gd" id="1_eh1mo"]
+[ext_resource type="Texture2D" uid="uid://cx88x3wgxs7o0" path="res://assets/art/Sprites/asteroid/asteroid.png" id="2_l0jro"]
+[ext_resource type="Script" path="res://scenes/core/asteroid_trail.gd" id="3_jon8i"]
+[ext_resource type="Texture2D" uid="uid://cgh1wpd5wv8xb" path="res://assets/art/Sprites/asteroid/1.png" id="3_uw063"]
+[ext_resource type="Texture2D" uid="uid://dn4gkph14if0o" path="res://assets/art/Sprites/asteroid/2.png" id="4_680pg"]
+[ext_resource type="Texture2D" uid="uid://bjhk83ej0j2fu" path="res://assets/art/Sprites/asteroid/3.png" id="5_yvas8"]
+[ext_resource type="Texture2D" uid="uid://c8m4edi76ndvk" path="res://assets/art/Sprites/asteroid/4.png" id="6_8jitm"]
+[ext_resource type="Texture2D" uid="uid://csvxdxdaww6a2" path="res://assets/art/Sprites/asteroid/5.png" id="7_nhcqf"]
+[ext_resource type="Texture2D" uid="uid://brbbjdc3mh1i3" path="res://assets/art/Sprites/asteroid/6.png" id="8_es6ic"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_adt8h"]
+radius = 97.5141
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hjwyy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uw063")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_680pg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yvas8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8jitm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nhcqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_es6ic")
+}],
+"loop": true,
+"name": &"burn",
+"speed": 5.0
+}]
+
+[node name="Asteroid" type="RigidBody2D"]
+script = ExtResource("1_eh1mo")
+
+[node name="AsteroidTrail" type="Node2D" parent="."]
+script = ExtResource("3_jon8i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_adt8h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-105, 19)
+sprite_frames = SubResource("SpriteFrames_hjwyy")
+animation = &"burn"
+autoplay = "burn"
+frame = 2
+frame_progress = 0.424726
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_l0jro")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

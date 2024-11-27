@@ -1,0 +1,253 @@
+[gd_scene load_steps=10 format=3 uid="uid://24ots1xn2hbf"]
+
+[ext_resource type="Script" path="res://scenes/MainMenu.gd" id="1_dvc6m"]
+[ext_resource type="Texture2D" uid="uid://l4ddkkjry85n" path="res://assets/art/Graphics/BG.png" id="2_il2pj"]
+[ext_resource type="Texture2D" uid="uid://crf43b8n1ilcg" path="res://assets/art/Graphics/Bigger.png" id="3_naoub"]
+[ext_resource type="Texture2D" uid="uid://dgljl0p3kp2ui" path="res://assets/art/Graphics/BigAssPlanet.png" id="4_ebfvs"]
+[ext_resource type="Texture2D" uid="uid://cbqykrytu6s3m" path="res://assets/art/Graphics/Planet.png" id="5_l7h3g"]
+[ext_resource type="Texture2D" uid="uid://bv4mqi17ob3cy" path="res://assets/art/Graphics/Smaller.png" id="6_k08l6"]
+
+[sub_resource type="Animation" id="Animation_pcd3j"]
+resource_name = "Opening"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu/Camera2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(626, -0.25, 0, 1.5, 5, 3000, 0, 0, 0, 0, 5374, -1.5, 5, 1.5, 5, 3000, 0, 0, 0, 0, 626, -1.5, 5, 0.25, 0),
+"times": PackedFloat32Array(0, 15, 30, 45, 60)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu/Camera2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1800, 0, 0, 0.25, 0, 374, -2.25, 0, 2.25, 0, 1800, 0, 0, 0, 0, 3226, -2.25, 0, 2.25, 0, 1800, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 15, 30, 45, 60)
+}
+
+[sub_resource type="Animation" id="Animation_ma6s2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu/Camera2D:CameraXPosition")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu/Camera2D:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu/Camera2D:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o78cy"]
+_data = {
+"Opening": SubResource("Animation_pcd3j"),
+"RESET": SubResource("Animation_ma6s2")
+}
+
+[node name="MainMenu" type="AnimationPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_o78cy")
+}
+script = ExtResource("1_dvc6m")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_il2pj")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 3000.0
+offset_right = 6000.0
+offset_bottom = 1800.0
+texture = ExtResource("2_il2pj")
+flip_h = true
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_top = 1800.0
+offset_right = 3000.0
+offset_bottom = 3600.0
+texture = ExtResource("2_il2pj")
+flip_v = true
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+offset_left = 3000.0
+offset_top = 1800.0
+offset_right = 6000.0
+offset_bottom = 3600.0
+texture = ExtResource("2_il2pj")
+flip_h = true
+flip_v = true
+
+[node name="Bigger" type="Sprite2D" parent="."]
+position = Vector2(1506, 1403)
+rotation = 1.5708
+texture = ExtResource("3_naoub")
+
+[node name="BigAssPlanet" type="Sprite2D" parent="."]
+position = Vector2(748, 577)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_ebfvs")
+
+[node name="Planet" type="Sprite2D" parent="."]
+position = Vector2(4982, 973)
+texture = ExtResource("5_l7h3g")
+
+[node name="Smaller" type="Sprite2D" parent="."]
+position = Vector2(3705, 419)
+texture = ExtResource("6_k08l6")
+
+[node name="Bigger2" type="Sprite2D" parent="."]
+position = Vector2(5392, 2210)
+texture = ExtResource("3_naoub")
+
+[node name="BigAssPlanet2" type="Sprite2D" parent="."]
+position = Vector2(3238, 3406)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_ebfvs")
+
+[node name="Smaller2" type="Sprite2D" parent="."]
+position = Vector2(4236, 3030)
+texture = ExtResource("6_k08l6")
+
+[node name="Smaller3" type="Sprite2D" parent="."]
+position = Vector2(2445, 3265)
+rotation = 3.14159
+texture = ExtResource("6_k08l6")
+
+[node name="Bigger3" type="Sprite2D" parent="."]
+position = Vector2(899, 2869)
+rotation = 1.22173
+texture = ExtResource("3_naoub")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(626, 1800)
+
+[node name="MenuList" type="VBoxContainer" parent="Camera2D"]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 260.0
+grow_horizontal = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Continue" type="Button" parent="Camera2D/MenuList"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Continue"
+
+[node name="NewGame" type="Button" parent="Camera2D/MenuList"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "New Game"
+
+[node name="LevelSelect" type="Button" parent="Camera2D/MenuList"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Level Select"
+
+[node name="Settings" type="Button" parent="Camera2D/MenuList"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "Settings"
+
+[node name="Quit" type="Button" parent="Camera2D/MenuList"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Quit"
+
+[node name="LevelList" type="VBoxContainer" parent="Camera2D"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 84.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Sandbox" type="Button" parent="Camera2D/LevelList"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Sandbox"
+
+[node name="Level0" type="Button" parent="Camera2D/LevelList"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Level 0"
+
+[node name="Level1" type="Button" parent="Camera2D/LevelList"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Level 1"
+
+[node name="Level2" type="Button" parent="Camera2D/LevelList"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Level 2"
+
+[node name="Level3" type="Button" parent="Camera2D/LevelList"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Level 3"
+
+[node name="Level4" type="Button" parent="Camera2D/LevelList"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Level 4"
+
+[node name="Level5" type="Button" parent="Camera2D/LevelList"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Level 5"
+
+[connection signal="pressed" from="Camera2D/MenuList/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Camera2D/MenuList/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Camera2D/MenuList/LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="Camera2D/MenuList/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Camera2D/MenuList/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Camera2D/LevelList/Sandbox" to="." method="_on_sandbox_pressed"]
+[connection signal="pressed" from="Camera2D/LevelList/Level0" to="." method="_on_level_0_pressed"]
+[connection signal="pressed" from="Camera2D/LevelList/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Camera2D/LevelList/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Camera2D/LevelList/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="Camera2D/LevelList/Level4" to="." method="_on_level_4_pressed"]
+[connection signal="pressed" from="Camera2D/LevelList/Level5" to="." method="_on_level_5_pressed"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cydo8jwhxfbna"]
+
+[ext_resource type="Script" path="res://scenes/game/spawners/player_spawn_area.gd" id="1_iufim"]
+[ext_resource type="PackedScene" uid="uid://cubnouq3u6ut3" path="res://scenes/core/player.tscn" id="2_cqepf"]
+
+[node name="PlayerSpawnArea" type="Node2D"]
+script = ExtResource("1_iufim")
+player_scene = ExtResource("2_cqepf")
+
+[node name="PlayerSpawn" type="Marker2D" parent="."]
